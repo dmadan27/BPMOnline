@@ -3,7 +3,8 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 		entitySchemaName: "UsrCustomerKonveksi",
 		attributes: {
 			/**
-			 * 
+			 * onchange di field nama customer
+			 * berpengaruh ke field email
 			 */
 			"UsrCustomerKonveksiEmail": {
 				dependencies: [
@@ -17,6 +18,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 		methods: {
 			/**
 			 * method yg pertama kali dijalankan saat page dijalankan
+			 * hanya untuk testing
 			 */
 			onEntityInitialized: function() {
 				this.callParent(arguments);
@@ -44,6 +46,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 
 					console.log("Method getDataContact() running...");
 					console.log("----------------------------------");
+					
 					this.getDataContact(nameCustomer.value, function(response) {
 						console.log("Response dari getDataContact");
 						console.log(data);

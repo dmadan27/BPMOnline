@@ -1,9 +1,10 @@
-define("UsrCustomerKonveksi1Page", [], function() {
+define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDataSchemaModule) {
 	return {
 		entitySchemaName: "UsrCustomerKonveksi",
 		attributes: {
-			// on change field name customer
-			// berpengaruh ke field email
+			/**
+			 * 
+			 */
 			"UsrCustomerKonveksiEmail": {
 				dependencies: [
 					{
@@ -20,6 +21,9 @@ define("UsrCustomerKonveksi1Page", [], function() {
 			onEntityInitialized: function() {
 				this.callParent(arguments);
 				console.log("Welcome, Call Init Function");
+				console.log("---------------------------");
+
+				UsrGetDataSchemaModule.init();	
 			},
 			/**
 			 * method on change customer
@@ -33,133 +37,55 @@ define("UsrCustomerKonveksi1Page", [], function() {
 				// get data nama customer
 				var nameCustomer = this.get("UsrCustomerKonveksiNameCustomer");
 
-				if (nameCustomer.value && (nameCustomer.value != null || nameCustomer.value != "")) {
+				if (nameCustomer && (nameCustomer.value != null || nameCustomer.value != "")) {
 					console.log("Name Customer: ");
 					console.log(nameCustomer.value);
-					console.log("-------------------------------------------");
+					console.log("---------------");
 
-					console.log("Call method getDataContact(): ");
-					this.getDataContact(nameCustomer.value, function(callback){
-						console.log("-------------------------------------------");
-						console.log("Return Data dari getDataContact()");
-						console.log(callback);
+					console.log("Method getDataContact() running...");
+					console.log("----------------------------------");
+					this.getDataContact(nameCustomer.value, function(response) {
+						console.log("Response dari getDataContact");
+						console.log(data);
+						console.log("-----------------------------");
 
-						// set field name
-						globalThis.set("UsrName", callback.full_name);
-						// set field address
-						globalThis.set("UsrCustomerKonveksiEmail", callback.email);
-						// set field phone
-						globalThis.set("UsrCustomerKonveksiPhone", callback.mobile_phone);
-
-						console.log(globalThis.get("UsrName"));
-						console.log(globalThis.get("UsrCustomerKonveksiEmail"));
-						console.log(globalThis.get("UsrCustomerKonveksiPhone"));
+						if(response.status){
+							globalThis.set("UsrName", response.data.Name);
+							globalThis.set("UsrCustomerKonveksiEmail", response.data.Email);
+							globalThis.set("UsrCustomerKonveksiPhone", response.data.Phone);
+						}
+						
 					});
-
-					
-					// console.log(getData);
 				}
 				else {
 					console.log("Tidak Ada Perubahan Data di Field Nama Customer");
 				}
 				
 			},
-			/**
-			 * 
-			 */
-			getDataContact: function(data, callback) {
-				// get data dari schema
-				var contact = Ext.create("Terrasoft.EntitySchemaQuery", {
-					rootSchemaName: "Contact"
-				});
+			getDataContact: function(data, responseData){
+				console.log("Column Sebelum: ");
+				console.log(UsrGetDataSchemaModule.column);
+				console.log("----------------");
 
-				// console.log(contact.addMacrosColumn(Terrasoft.QueryMacrosType.PRIMARY_COLUMN, "Id"));
-				
-				// cari berdasarkan id
-				contact.addMacrosColumn(Terrasoft.QueryMacrosType.PRIMARY_COLUMN, "Id");
-				
-				// tambahkan kolom yg saling berelasinya untuk get data lainnya
-				// pastikan semuanya harus sesuai dgn di schema yg dituju
-				contact.addColumn("Name");
-				contact.addColumn("Type");
-				contact.addColumn("Account");
-				contact.addColumn("JobTitle");
-				contact.addColumn("Department");
-				contact.addColumn("MobilePhone");
-				contact.addColumn("Email");
+				UsrGetDataSchemaModule.setColumn("Name");
+				UsrGetDataSchemaModule.setColumn("Type");
+				UsrGetDataSchemaModule.setColumn("Account");
+				UsrGetDataSchemaModule.setColumn("JobTitle");
+				UsrGetDataSchemaModule.setColumn("Department");
+				UsrGetDataSchemaModule.setColumn("MobilePhone");
+				UsrGetDataSchemaModule.setColumn("Email");
 
-				// filter data schema dengan data dr param
-				var filters = Ext.create("Terrasoft.FilterGroup");
-				filters.addItem(contact.createColumnFilterWithParameter(Terrasoft.ComparisonType.EQUAL, "Id", data));
-				
-				contact.filters = filters;
-				// eksekusi pencarian data
-				contact.execute(function(response) {
-					console.log("Responce Execute: ");
+				console.log("Column Sesudah: ");
+				console.log(UsrGetDataSchemaModule.column);
+				console.log("----------------");
+
+				UsrGetDataSchemaModule.getDataSchemaById("Contact", data, function(response) {
+					console.log("Response method getDataSchemaById: ");
 					console.log(response);
+					console.log("-----------------------------------");
 
-					// jika sukses akses data schema
-					if (response.success) {
-						console.log("Response Collection: ");
-						console.log(response.collection.getCount());
-
-						// jika data ada yg sama
-						if (response.collection.getCount() > 0) {
-							// console.log("Data Kontak dengan ID Contact "+data+" :");
-							// console.log("-------------------------------------------");
-
-							// console.log("ID : "+response.collection.getByIndex(0).get("Id"));
-							// console.log("-------------------------------------------");
-
-							// console.log("Full Name : "+response.collection.getByIndex(0).get("Name"));
-							// console.log("-------------------------------------------");
-							
-							// console.log("Type : "+response.collection.getByIndex(0).get("Type"));
-							// console.log(response.collection.getByIndex(0).get("Type"));
-							// console.log("-------------------------------------------");
-							
-							// console.log("Account : "+response.collection.getByIndex(0).get("Account"));
-							// console.log(response.collection.getByIndex(0).get("Type"));
-							// console.log("-------------------------------------------");
-							
-							// console.log("Full Job Title : "+response.collection.getByIndex(0).get("JobTitle"));
-							// console.log(response.collection.getByIndex(0).get("Type"));
-							// console.log("-------------------------------------------");
-							
-							// console.log("Department : "+response.collection.getByIndex(0).get("Department"));
-							// console.log(response.collection.getByIndex(0).get("Type"));
-							// console.log("-------------------------------------------");
-							
-							// console.log("Mobile Phone : "+response.collection.getByIndex(0).get("MobilePhone"));
-							// console.log("-------------------------------------------");
-							
-							// console.log("Email : "+response.collection.getByIndex(0).get("Email"));
-							// console.log("-------------------------------------------");
-
-							var returnContact = {
-								'id': response.collection.getByIndex(0).get("Id"),
-								'full_name': response.collection.getByIndex(0).get("Name"),
-								'type': response.collection.getByIndex(0).get("Type"),
-								'account': response.collection.getByIndex(0).get("Account"),
-								'full_job_title': response.collection.getByIndex(0).get("JobTitle"),
-								'department': response.collection.getByIndex(0).get("Department"),
-								'mobile_phone': response.collection.getByIndex(0).get("MobilePhone"),
-								'email': response.collection.getByIndex(0).get("Email"),
-							};
-							
-							callback(returnContact);
-							// return returnContact;
-						}
-						else {
-							console.log("Data Tidak Ada yang Cocok dengan di Kontak");
-							callback(false);
-						}
-					}
-					else {
-						console.log("Response Execute Gagal");
-						callback(false);
-					}
-				}, this);
+					responseData(response);
+				})
 			},
 		},
 		modules: /**SCHEMA_MODULES*/{}/**SCHEMA_MODULES*/,

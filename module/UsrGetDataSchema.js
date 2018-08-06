@@ -53,7 +53,7 @@ define("UsrGetDataSchemaModule", [], function() {
          * @param nameSchema: nama schema yang dicari
          * @param data: data yang ingin dicari di schema
          * @param respone: output berupa callback
-         * return berupa response callback
+         * @returns berupa response callback
          */
         getDataSchemaById: function(nameSchema, data, response) {
             var globalThis = this;
@@ -101,7 +101,7 @@ define("UsrGetDataSchemaModule", [], function() {
         /**
          * Method untuk set data respone di result execute
          * @param resultExecute: var hasil execute di method getDataSchema
-         * return data berupa object yang sesuai dgn column yg sudah si set
+         * @returns data berupa object yang sesuai dgn column yg sudah si set
          */
         setResponseExecute: function(resultExecute) {
             var result = {};

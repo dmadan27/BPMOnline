@@ -3,12 +3,24 @@ var customerKonveksi = {
     title: "Customer Konveksi",
     code: "UsrCustomerKonveksi",
     page: [
-        // field full name
+        // field full name for name
         {
             name: "Full Name",
             code: "UsrCustomerKonveksiFullName",
             type: "string",
             requireDB: true,
+            readOnly: false,
+        },
+        // field full name for lookup
+        {
+            name: "Full Name",
+            code: "UsrCustomerKonveksiFullNameLookup",
+            type: {
+                type: "lookup",
+                from: "Contact"
+            },
+            requireDB: true,
+            readOnly: false,
         },
         // field address
         {
@@ -16,6 +28,7 @@ var customerKonveksi = {
             code: "UsrCustomerKonveksiAddress",
             type: "string",
             requireDB: false,
+            readOnly: false,
         },
         // field email
         {
@@ -23,6 +36,7 @@ var customerKonveksi = {
             code: "UsrCustomerKonveksiEmail",
             type: "string",
             requireDB: false,
+            readOnly: false,
         },
         // field mobile phone
         {
@@ -30,6 +44,7 @@ var customerKonveksi = {
             code: "UsrCustomerKonveksiMobilePhone",
             type: "string",
             requireDB: true,
+            readOnly: false,
         }
     ],
 };
@@ -45,6 +60,7 @@ var productKonveksi = {
             code: "UsrProductKonveksiCodeProduct",
             type: "string",
             requireDB: true,
+            readOnly: false,
         },
         // field name product
         {
@@ -52,6 +68,7 @@ var productKonveksi = {
             code: "UsrProductKonveksiNameProduct",
             type: "string",
             requireDB: true,
+            readOnly: false,
         },
         // field price
         {
@@ -59,6 +76,7 @@ var productKonveksi = {
             code: "UsrProductKonveksiPrice",
             type: "decimal",
             requireDB: true,
+            readOnly: false,
         },
         // field stock
         {
@@ -66,6 +84,7 @@ var productKonveksi = {
             code: "UsrProductKonveksiStock",
             type: "integer",
             requireDB: true,
+            readOnly: false,
         },
         // field description
         {
@@ -73,30 +92,86 @@ var productKonveksi = {
             code: "UsrProductKonveksiDescription",
             type: "string",
             requireDB: true,
+            readOnly: false,
         },
     ],
 };
 
 // section order
-var order = {
+var orderKonveksi = {
     title: "Order Konveksi",
     code: "UsrOrderKonveksi",
     page: [
         // field code order
         {
-            name: "Code Product",
-            code: "UsrProductKonveksiCodeProduct",
+            name: "Code Order",
+            code: "UsrOrderKonveksiCodeOrder",
             type: "string",
             requireDB: true,
+            readOnly: false,
+        },
+        // field date
+        {
+            name: "Date",
+            code: "UsrOrderKonveksiDate",
+            type: "date",
+            requireDB: true,
+            readOnly: false,
+        },
+        // field customer name
+        {
+            name: "Customer Name",
+            code: "UsrOrderKonveksiCustomerName",
+            type: "string",
+            requireDB: true,
+            readOnly: false,
+        },
+        // field discount
+        {
+            name: "Discount",
+            code: "UsrOrderKonveksiDiscount",
+            type: "decimal",
+            requireDB: false,
+            readOnly: false,
+        },
+        // field total
+        {
+            name: "Total",
+            code: "UsrOrderKonveksiTotal",
+            type: "decimal",
+            requireDB: true,
+            readOnly: false,
         },
     ],
 };
 
 // section detail order
-var detailOrder = {
+var detailOrderKonveksi = {
     title: "Detail Order Konveksi",
     code: "UsrDetailOrderKonveksi",
-    page: [],
+    page: [
+        // field id order
+        {
+            name: "Id Order",
+            code: "UsrDetailOrderKonveksiIdOrder",
+            type: {
+                type: "lookup",
+                from: "Order Konveksi"
+            },
+            requireDB: true,
+            readOnly: false,
+        },
+        // field product
+        {
+            name: "Product",
+            code: "UsrOrderKonveksiProduct",
+            type: {
+                type:
+            },
+            requireDB: true,
+            readOnly: false,
+        }
+    ],
 };
 
 // section supplier

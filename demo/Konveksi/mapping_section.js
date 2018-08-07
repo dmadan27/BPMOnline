@@ -30,14 +30,6 @@ var customerKonveksi = {
             requireDB: false,
             readOnly: false,
         },
-        // field email
-        {
-            name: "Email",
-            code: "UsrCustomerKonveksiEmail",
-            type: "string",
-            requireDB: false,
-            readOnly: false,
-        },
         // field mobile phone
         {
             name: "Mobile Phone",
@@ -46,6 +38,14 @@ var customerKonveksi = {
             requireDB: true,
             readOnly: false,
         }
+        // field email
+        {
+            name: "Email",
+            code: "UsrCustomerKonveksiEmail",
+            type: "string",
+            requireDB: false,
+            readOnly: false,
+        },
     ],
 };
 
@@ -201,5 +201,56 @@ var detailOrderKonveksi = {
 
 // section supplier
 var supplierKonveksi = {
-
+    title: "Supplier Konveksi",
+    code: "UsrSupplierKonveksi",
+    page: [
+        // field name supplier for name
+        {
+            name: "Name Supplier",
+            code: "UsrSupplierKonveksiFullName",
+            type: "string",
+            requireDB: true,
+            readOnly: false,
+        },
+        // field name supplier for lookup
+        {
+            name: "Name Supplier",
+            code: "UsrSupplierKonveksiNameSupplierLookup",
+            type: {
+                type: "lookup",
+                from: "Account"
+            },
+            requireDB: true,
+            readOnly: false,
+        },
+        // field address
+        {
+            name: "Address",
+            code: "UsrSupplierKonveksiAddress",
+            type: "string",
+            requireDB: false,
+            readOnly: false,
+        },
+        // field phone
+        {
+            name: "Phone",
+            code: "UsrSupplierKonveksiPhone",
+            type: "string",
+            requireDB: true,
+            readOnly: false,
+        }
+        // field email
+        {
+            name: "Email",
+            code: "UsrSupplierKonveksiEmail",
+            type: "string",
+            requireDB: false,
+            readOnly: false,
+        },
+    ],
 };
+
+// section purchase
+var purchaseKonveksi = {
+    
+}

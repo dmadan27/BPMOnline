@@ -164,10 +164,35 @@ var detailOrderKonveksi = {
         // field product
         {
             name: "Product",
-            code: "UsrOrderKonveksiProduct",
+            code: "UsrDetailOrderKonveksiProduct",
             type: {
-                type:
+                type: "lookup",
+                from: "Product Konveksi"
             },
+            requireDB: true,
+            readOnly: false,
+        },
+        // field price
+        {
+            name: "Price",
+            code: "UsrDetailOrderKonveksiPrice",
+            type: "decimal",
+            requireDB: true,
+            readOnly: false,
+        },
+        // field qty
+        {
+            name: "Qty",
+            code: "UsrDetailOrderKonveksiQty",
+            type: "integer",
+            requireDB: true,
+            readOnly: false,
+        },
+        // field subtotal
+        {
+            name: "Sub Total",
+            code: "UsrDetailOrderKonveksiSubTotal",
+            type: "decimal",
             requireDB: true,
             readOnly: false,
         }

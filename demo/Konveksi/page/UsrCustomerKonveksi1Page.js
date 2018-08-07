@@ -18,36 +18,49 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
         },
         methods: {
             /**
-             * 
+             * method construct
+             * yang pertama kali dijalankan
              */
             onEntityInitialized: function() {
                 this.callParent(arguments);
 
                 console.log("Running module Customer Konveksi...");
                 console.log("-----------------------------------");
-
-                // UsrGetDataSchemaModule.init();
             },
             /**
-             * 
+             * method onChangeFullName
+             * setiap kali ada perubahan di field full name akan mengubah field email dan phone
+             * menjalankan method getDataContact()
              */
             onChangeFullName: function() {
                 var globalThis = this;
                 var fullName = this.get("UsrCustomerKonveksiFullNameLookup");
 
-                console.log(fullName);
+                // console.log(fullName);
 
-                this.getDataContact(fullName.value, function(response) {
-                    if(response.status){
-                        var data = response.data;
-                        // set data dari callback
-                        globalThis.set("UsrUsrCustomerKonveksiEmail", data.Email);
-                        globalThis.set("UsrCustomerKonveksiMobilePhone", data.MobilePhone);
-                    }
-                });
+                if(fullName != null){
+                    this.getDataContact(fullName.value, function(response) {
+                        if(response.status){
+                            var data = response.data;
+
+                            // set data dari callback
+                            globalThis.set("UsrName", data.Name);
+                            globalThis.set("UsrUsrCustomerKonveksiEmail", data.Email);
+                            globalThis.set("UsrCustomerKonveksiMobilePhone", data.MobilePhone);
+                            console.log(globalThis.get("UsrName"));
+                        }
+                    });
+                }
+                else{
+                    this.resetField();
+                }
             },
             /**
-             * 
+             * method getDataContact
+             * untuk get data contact sesuai id yang dipilih
+             * @param id: id contact
+             * @param callback: response callback yang akan di olah
+             * @returns berupa callback
              */
             getDataContact: function(id, callback) {
                 // set column yg ingin di get
@@ -59,6 +72,16 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
                     callback(response);
                 });
             },
+            /**
+             * method resetField
+             * untuk mereset field menjadi kosong/null
+             * mereset field name, email, dan phone
+             */
+            resetField: function() {
+                this.set("UsrName", null);
+                this.set("UsrUsrCustomerKonveksiEmail", null);
+                this.set("UsrCustomerKonveksiMobilePhone", null);
+            }
         },
 		modules: /**SCHEMA_MODULES*/{}/**SCHEMA_MODULES*/,
 		details: /**SCHEMA_DETAILS*/{}/**SCHEMA_DETAILS*/,

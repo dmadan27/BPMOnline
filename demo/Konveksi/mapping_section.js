@@ -5,7 +5,7 @@ var customerKonveksi = {
     page: [
         // field full name for name
         {
-            name: "Full Name",
+            name: "Name",
             code: "UsrName",
             type: "string",
             requireDB: true,
@@ -252,5 +252,5 @@ var supplierKonveksi = {
 
 // section purchase
 var purchaseKonveksi = {
-    
+
 }

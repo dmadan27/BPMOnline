@@ -6,7 +6,7 @@ var customerKonveksi = {
         // field full name for name
         {
             name: "Full Name",
-            code: "UsrCustomerKonveksiFullName",
+            code: "UsrName",
             type: "string",
             requireDB: true,
             readOnly: false,
@@ -57,7 +57,7 @@ var productKonveksi = {
         // field code product
         {
             name: "Code Product",
-            code: "UsrProductKonveksiCodeProduct",
+            code: "UsrName",
             type: "string",
             requireDB: true,
             readOnly: false,
@@ -105,7 +105,7 @@ var orderKonveksi = {
         // field code order
         {
             name: "Code Order",
-            code: "UsrOrderKonveksiCodeOrder",
+            code: "UsrName",
             type: "string",
             requireDB: true,
             readOnly: false,
@@ -207,7 +207,7 @@ var supplierKonveksi = {
         // field name supplier for name
         {
             name: "Name Supplier",
-            code: "UsrSupplierKonveksiFullName",
+            code: "UsrName",
             type: "string",
             requireDB: true,
             readOnly: false,
@@ -252,5 +252,5 @@ var supplierKonveksi = {
 
 // section purchase
 var purchaseKonveksi = {
-    
+
 }

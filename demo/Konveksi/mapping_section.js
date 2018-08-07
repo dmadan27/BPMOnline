@@ -252,5 +252,5 @@ var supplierKonveksi = {
 
 // section purchase
 var purchaseKonveksi = {
-
+    
 }

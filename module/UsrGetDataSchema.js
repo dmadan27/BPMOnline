@@ -51,11 +51,11 @@ define("UsrGetDataSchemaModule", [], function() {
          * Method get data schema
          * untuk get data sesuai dgn schema yg dipilih
          * @param nameSchema: nama schema yang dicari
-         * @param data: data yang ingin dicari di schema
+         * @param id: data yang ingin dicari di schema
          * @param respone: output berupa callback
          * @returns berupa response callback
          */
-        getDataSchemaById: function(nameSchema, data, response) {
+        getDataSchemaById: function(nameSchema, id, response) {
             var globalThis = this;
 
             // get data schema
@@ -69,7 +69,7 @@ define("UsrGetDataSchemaModule", [], function() {
             
             // filter data yang dicari dengan data yg ada di schema
             var filters = Ext.create("Terrasoft.FilterGroup");
-            filters.addItem(schema.createColumnFilterWithParameter(Terrasoft.ComparisonType.EQUAL, "Id", data));
+            filters.addItem(schema.createColumnFilterWithParameter(Terrasoft.ComparisonType.EQUAL, "Id", id));
             schema.filters = filters;
             schema.execute(function(resultExecute) {
                 // jika eksekusi sukses

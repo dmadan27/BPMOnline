@@ -1,16 +1,16 @@
-define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDataSchemaModule) {
+define("UsrCustomerKonveksi21Page", [], function() {
 	return {
-		entitySchemaName: "UsrCustomerKonveksi",
-        attributes: {
+		entitySchemaName: "UsrCustomerKonveksi2",
+		attributes: {
             /**
              * onChange di field full name customer
              * berpengaruh ke field address, email, dan mobile phone
              * running method onChangeFullName
              */
-            "UsrCustomerKonveksiAddress": {
+            "UsrCustomerKonveksi2Address": {
                 dependencies: [
                     {
-                        columns: ["UsrCustomerKonveksiFullNameLookup"],
+                        columns: ["UsrCustomerKonveksi2FullName"],
                         methodName: "onChangeFullName"
                     }
                 ]
@@ -34,7 +34,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
              */
             onChangeFullName: function() {
                 var globalThis = this;
-                var fullName = this.get("UsrCustomerKonveksiFullNameLookup");
+                var fullName = this.get("UsrCustomerKonveksi2FullName");
 
                 // console.log(fullName);
 
@@ -45,8 +45,8 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 
                             // set data dari callback
                             globalThis.set("UsrName", data.Name);
-                            globalThis.set("UsrUsrCustomerKonveksiEmail", data.Email);
-                            globalThis.set("UsrCustomerKonveksiMobilePhone", data.MobilePhone);
+                            globalThis.set("UsrCustomerKonveksi2Email", data.Email);
+                            globalThis.set("UsrCustomerKonveksi2MobilePhone", data.MobilePhone);
                             console.log(globalThis.get("UsrName"));
                         }
                     });
@@ -79,18 +79,28 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
              */
             resetField: function() {
                 this.set("UsrName", null);
-                this.set("UsrUsrCustomerKonveksiEmail", null);
-                this.set("UsrCustomerKonveksiMobilePhone", null);
+                this.set("UsrCustomerKonveksi2Address", null);
+                this.set("UsrCustomerKonveksi2Email", null);
+                this.set("UsrCustomerKonveksi2MobilePhone", null);
             }
         },
 		modules: /**SCHEMA_MODULES*/{}/**SCHEMA_MODULES*/,
-		details: /**SCHEMA_DETAILS*/{}/**SCHEMA_DETAILS*/,
+		details: /**SCHEMA_DETAILS*/{
+			"Files": {
+				"schemaName": "FileDetailV2",
+				"entitySchemaName": "UsrCustomerKonveksi2File",
+				"filter": {
+					"masterColumn": "Id",
+					"detailColumn": "UsrCustomerKonveksi2"
+				}
+			}
+		}/**SCHEMA_DETAILS*/,
 		businessRules: /**SCHEMA_BUSINESS_RULES*/{}/**SCHEMA_BUSINESS_RULES*/,
 		dataModels: /**SCHEMA_DATA_MODELS*/{}/**SCHEMA_DATA_MODELS*/,
 		diff: /**SCHEMA_DIFF*/[
 			{
 				"operation": "insert",
-				"name": "LOOKUP71d8f2a9-816b-4f5c-9505-21a3dd5a3fc6",
+				"name": "LOOKUP5b35d9bd-3198-46f9-ae38-17ffa0ede3c1",
 				"values": {
 					"layout": {
 						"colSpan": 24,
@@ -99,9 +109,9 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 						"row": 0,
 						"layoutName": "ProfileContainer"
 					},
-					"bindTo": "UsrCustomerKonveksiFullNameLookup",
+					"bindTo": "UsrCustomerKonveksi2FullName",
 					"enabled": true,
-					"contentType": 3
+					"contentType": 5
 				},
 				"parentName": "ProfileContainer",
 				"propertyName": "items",
@@ -109,7 +119,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 			},
 			{
 				"operation": "insert",
-				"name": "STRING4286588d-00d9-4600-82cc-9ca2239b7998",
+				"name": "UsrCustomerKonveksi2Addressa3a3a67f-39ee-4849-82ac-b1c749cc7c99",
 				"values": {
 					"layout": {
 						"colSpan": 24,
@@ -118,7 +128,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 						"row": 1,
 						"layoutName": "ProfileContainer"
 					},
-					"bindTo": "UsrCustomerKonveksiAddress",
+					"bindTo": "UsrCustomerKonveksi2Address",
 					"enabled": true
 				},
 				"parentName": "ProfileContainer",
@@ -127,7 +137,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 			},
 			{
 				"operation": "insert",
-				"name": "STRING83309d61-2819-42f1-8a85-838649dca88c",
+				"name": "STRING7e613235-d1fd-4da6-a3f4-bcfaa34b752e",
 				"values": {
 					"layout": {
 						"colSpan": 24,
@@ -136,7 +146,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 						"row": 2,
 						"layoutName": "ProfileContainer"
 					},
-					"bindTo": "UsrUsrCustomerKonveksiEmail",
+					"bindTo": "UsrCustomerKonveksi2MobilePhone",
 					"enabled": true
 				},
 				"parentName": "ProfileContainer",
@@ -145,7 +155,7 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 			},
 			{
 				"operation": "insert",
-				"name": "STRING10b6d15b-325c-41d7-abe1-e9fa2251372c",
+				"name": "STRING8891f9c2-d167-4cbf-9724-80de1dfeb039",
 				"values": {
 					"layout": {
 						"colSpan": 24,
@@ -154,12 +164,77 @@ define("UsrCustomerKonveksi1Page", ["UsrGetDataSchemaModule"], function(UsrGetDa
 						"row": 3,
 						"layoutName": "ProfileContainer"
 					},
-					"bindTo": "UsrCustomerKonveksiMobilePhone",
+					"bindTo": "UsrCustomerKonveksi2Email",
 					"enabled": true
 				},
 				"parentName": "ProfileContainer",
 				"propertyName": "items",
 				"index": 3
+			},
+			{
+				"operation": "insert",
+				"name": "NotesAndFilesTab",
+				"values": {
+					"caption": {
+						"bindTo": "Resources.Strings.NotesAndFilesTabCaption"
+					},
+					"items": []
+				},
+				"parentName": "Tabs",
+				"propertyName": "tabs",
+				"index": 0
+			},
+			{
+				"operation": "insert",
+				"name": "Files",
+				"values": {
+					"itemType": 2
+				},
+				"parentName": "NotesAndFilesTab",
+				"propertyName": "items",
+				"index": 0
+			},
+			{
+				"operation": "insert",
+				"name": "NotesControlGroup",
+				"values": {
+					"itemType": 15,
+					"caption": {
+						"bindTo": "Resources.Strings.NotesGroupCaption"
+					},
+					"items": []
+				},
+				"parentName": "NotesAndFilesTab",
+				"propertyName": "items",
+				"index": 1
+			},
+			{
+				"operation": "insert",
+				"name": "Notes",
+				"values": {
+					"bindTo": "UsrNotes",
+					"dataValueType": 1,
+					"contentType": 4,
+					"layout": {
+						"column": 0,
+						"row": 0,
+						"colSpan": 24
+					},
+					"labelConfig": {
+						"visible": false
+					},
+					"controlConfig": {
+						"imageLoaded": {
+							"bindTo": "insertImagesToNotes"
+						},
+						"images": {
+							"bindTo": "NotesImagesCollection"
+						}
+					}
+				},
+				"parentName": "NotesControlGroup",
+				"propertyName": "items",
+				"index": 0
 			}
 		]/**SCHEMA_DIFF*/
 	};

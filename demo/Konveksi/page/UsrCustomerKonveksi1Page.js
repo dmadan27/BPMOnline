@@ -1,4 +1,4 @@
-define("UsrCustomerKonveksi21Page", [], function() {
+define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetDataSchemaModule) {
 	return {
 		entitySchemaName: "UsrCustomerKonveksi2",
 		attributes: {
@@ -39,17 +39,20 @@ define("UsrCustomerKonveksi21Page", [], function() {
                 // console.log(fullName);
 
                 if(fullName != null){
-                    this.getDataContact(fullName.value, function(response) {
-                        if(response.status){
-                            var data = response.data;
-
-                            // set data dari callback
-                            globalThis.set("UsrName", data.Name);
-                            globalThis.set("UsrCustomerKonveksi2Email", data.Email);
-                            globalThis.set("UsrCustomerKonveksi2MobilePhone", data.MobilePhone);
-                            console.log(globalThis.get("UsrName"));
-                        }
-                    });
+                    // this.getDataContact(fullName.value, function(response) {
+                    //     if(response.status){
+                    //         var data = response.data;
+                    //         globalThis.setField(data);
+                    //     }
+					// });
+					
+					// test getAllDataSchema
+					UsrGetDataSchemaModule.setColumn("Name", "Namanya");
+					UsrGetDataSchemaModule.setColumn("Email", "Emailnya");
+					UsrGetDataSchemaModule.setColumn("MobilePhone", "NoHpnya");
+					UsrGetDataSchemaModule.getAllDataSchema("UsrCustomerKonveksi2", false, function(response){
+						console.log(response);
+					});
                 }
                 else{
                     this.resetField();
@@ -71,7 +74,19 @@ define("UsrCustomerKonveksi21Page", [], function() {
                 UsrGetDataSchemaModule.getDataSchemaById("Contact", id, function(response) {
                     callback(response);
                 });
-            },
+			},
+			/**
+			 * method setField
+			 * untuk set field dengan data yg diingingkan
+			 * @param data: berupa object
+			 */
+			setField: function(data) {
+				// set data field
+				this.set("UsrName", data.Name);
+				this.set("UsrCustomerKonveksi2Email", data.Email);
+				this.set("UsrCustomerKonveksi2MobilePhone", data.MobilePhone);
+				console.log(this.get("UsrName"));
+			},
             /**
              * method resetField
              * untuk mereset field menjadi kosong/null

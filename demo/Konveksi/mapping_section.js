@@ -122,7 +122,9 @@ var orderKonveksi = {
         {
             name: "Customer Name",
             code: "UsrOrderKonveksiCustomerName",
-            type: "string",
+            type: {
+                
+            },
             requireDB: true,
             readOnly: false,
         },
@@ -142,6 +144,11 @@ var orderKonveksi = {
             requireDB: true,
             readOnly: false,
         },
+    ],
+    detail: [
+        {
+            detail: "Detail Order"
+        }
     ],
 };
 
@@ -197,6 +204,7 @@ var detailOrderKonveksi = {
             readOnly: false,
         }
     ],
+    detail: [],
 };
 
 // section supplier
@@ -252,5 +260,18 @@ var supplierKonveksi = {
 
 // section purchase
 var purchaseKonveksi = {
+    title: "Purchase Konveksi",
+    code: "UsrPurchaseKonveksi",
+    page: [
+        // field
+    ],
+    detail: [
+        {}
+    ],
+};
 
-}
+// section detail purchase
+var detailPurchaseKonveksi = {
+    title: "Purchase Konveksi",
+    code: "UsrSupplierKonveksi",
+};

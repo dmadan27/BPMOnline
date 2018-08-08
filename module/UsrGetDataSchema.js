@@ -23,13 +23,13 @@ define("UsrGetDataSchemaModule", [], function() {
          * method test, hapus saat Production
          */
         init: function() {
-            console.log("Execute Module UsrGetDataSchema");
+            console.log("Running Module UsrGetDataSchema");
             console.log("-------------------------------");
         },
         /**
          * Method setColumn
          * set property column sesuai dgn inputan yg diinginkan
-         * @param column: nama column, dapat berupa object ataupun string
+         * @param column: nama column (harus sesuai dgn di section wizard), dapat berupa object ataupun string
          * jika object, maka memiliki 2 property:
          * object.name: nama column asli, object.alias: alias dari column asli untuk mempermudah pemanggilan
          * @param alias: alias dari nama column, default false.
@@ -126,6 +126,9 @@ define("UsrGetDataSchemaModule", [], function() {
             // get column yg sudah di set
             this.getColumn(esq);
 
+            // filter by and conditional filter
+            
+
             // get data sesuai dgn filter
             esq.getEntityCollection(function(result) {
                 // jika ada error processing
@@ -141,11 +144,11 @@ define("UsrGetDataSchemaModule", [], function() {
                 }
 
                 // jika sukses
-                // var data = globalThis.getResultEntity(result, false);
+                var data = globalThis.getResultEntity(result, false);
                 // var message = () ? "Data Tidak Ditemukan" : null;
                 callbackResponse({
                     status: true, 
-                    data: result.collection,
+                    data: data,
                     message: null
                 });
 
@@ -156,6 +159,7 @@ define("UsrGetDataSchemaModule", [], function() {
         /**
          * Method untuk get data response di result entity
          * @param resultEntity: var hasil entity di method getDataSchema
+         * @param byId: true untuk result byId/data satuan, false untuk data set/banyak
          * @returns data berupa object/array yang sesuai dgn column yg sudah si set
          */
         getResultEntity: function(resultEntity, byId = true) {
@@ -164,6 +168,7 @@ define("UsrGetDataSchemaModule", [], function() {
             
             // jika byId true, atau untuk data satuan
             if(byId) {
+                // pecah
                 this.column.forEach(function(item) {
                     // jika column dgn alias
                     if(typeof(item) == "object"){

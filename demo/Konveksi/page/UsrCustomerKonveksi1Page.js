@@ -47,9 +47,9 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
 					// });
 					
 					// test getAllDataSchema
-					UsrGetDataSchemaModule.setColumn("Name", "Namanya");
-					UsrGetDataSchemaModule.setColumn("Email", "Emailnya");
-					UsrGetDataSchemaModule.setColumn("MobilePhone", "NoHpnya");
+					UsrGetDataSchemaModule.setColumn("UsrName", "Namanya");
+					UsrGetDataSchemaModule.setColumn("UsrCustomerKonveksi2Email", "Emailnya");
+					UsrGetDataSchemaModule.setColumn("UsrCustomerKonveksi2MobilePhone", "NoHpnya");
 					UsrGetDataSchemaModule.getAllDataSchema("UsrCustomerKonveksi2", false, function(response){
 						console.log(response);
 					});

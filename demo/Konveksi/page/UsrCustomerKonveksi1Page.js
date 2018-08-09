@@ -39,19 +39,11 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
                 // console.log(fullName);
 
                 if(fullName != null){
-                    // this.getDataContact(fullName.value, function(response) {
-                    //     if(response.status){
-                    //         var data = response.data;
-                    //         globalThis.setField(data);
-                    //     }
-					// });
-					
-					// test getAllDataSchema
-					UsrGetDataSchemaModule.setColumn("UsrName", "Namanya");
-					UsrGetDataSchemaModule.setColumn("UsrCustomerKonveksi2Email", "Emailnya");
-					UsrGetDataSchemaModule.setColumn("UsrCustomerKonveksi2MobilePhone", "NoHpnya");
-					UsrGetDataSchemaModule.getAllDataSchema("UsrCustomerKonveksi2", false, function(response){
-						console.log(response);
+                    this.getDataContact(fullName.value, function(response) {
+                        if(response.status){
+                            var data = response.data;
+                            globalThis.setField(data);
+                        }
 					});
                 }
                 else{
@@ -69,11 +61,20 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
                 // set column yg ingin di get
                 UsrGetDataSchemaModule.setColumn("Name");
                 UsrGetDataSchemaModule.setColumn("Email");
-                UsrGetDataSchemaModule.setColumn("MobilePhone");
+                UsrGetDataSchemaModule.setColumn("MobilePhone", "HP");
 
-                UsrGetDataSchemaModule.getDataSchemaById("Contact", id, function(response) {
+				// example get by id
+                // UsrGetDataSchemaModule.getDataSchemaById("Contact", id, function(response) {
+                //     callback(response);
+				// });
+				
+				// example get by filter
+				// set filter
+				UsrGetDataSchemaModule.setFilter("Id", id);
+				UsrGetDataSchemaModule.getAllDataSchema("Contact", false, function(response) {
+					console.log(response);
                     callback(response);
-                });
+				});
 			},
 			/**
 			 * method setField
@@ -82,9 +83,17 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
 			 */
 			setField: function(data) {
 				// set data field
-				this.set("UsrName", data.Name);
-				this.set("UsrCustomerKonveksi2Email", data.Email);
-				this.set("UsrCustomerKonveksi2MobilePhone", data.MobilePhone);
+				
+				// jika memakai getDataSchemaById
+				// this.set("UsrName", data.Name);
+				// this.set("UsrCustomerKonveksi2Email", data.Email);
+				// this.set("UsrCustomerKonveksi2MobilePhone", data.HP);
+				
+				// jika memakai getAllDataSchema
+				this.set("UsrName", data[0].Name);
+				this.set("UsrCustomerKonveksi2Email", data[0].Email);
+				this.set("UsrCustomerKonveksi2MobilePhone", data[0].HP);
+
 				console.log(this.get("UsrName"));
 			},
             /**

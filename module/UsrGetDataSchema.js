@@ -1,11 +1,20 @@
 /**
  * Module untuk get data schema
+ * Version: Beta 1.0
  * 
- * Version: Alpha 0.3
+ * Fitur:
+ * get data schema berdasarkan id
+ * get data schema berdasarkan filter / tidak
  * 
- * How to Use:
- * 1. Load Module
- * 2. add module name in module yg mau dipake
+ * How To Use:
+ * 1. Load module ini di module yg ingin di pakai
+ * 2. jika ingin menggunakan getDataSchemaById:
+ *      2.1 panggil method setColumn pertama kali, set column yg ingin di get
+ *      2.2 panggil method getDataSchemaById
+ * 3. jika ingin menggunakan getAllDataSchema:
+ *      3.1 panggil method setColumn pertama kali, set column yg ingin di get
+ *      3.2 panggil method setFilter jika ingin menggunakan filter, jika tidak abaikan
+ *      3.3 panggil method getAllDataSchema
  * 
  * Catatan:
  * MASIH TAHAP DEVELOPMENT
@@ -19,6 +28,11 @@ define("UsrGetDataSchemaModule", [], function() {
          */
         column: [],
         /**
+         * Property filter
+         * Sebagai penampung filter apa saja untuk pencarian di schema
+         */
+        filter: [],
+        /**
          * Method init - construct
          * method test, hapus saat Production
          */
@@ -30,15 +44,18 @@ define("UsrGetDataSchemaModule", [], function() {
          * Method setColumn
          * set property column sesuai dgn inputan yg diinginkan
          * @param column: nama column (harus sesuai dgn di section wizard), dapat berupa object ataupun string
-         * jika object, maka memiliki 2 property:
-         * object.name: nama column asli, object.alias: alias dari column asli untuk mempermudah pemanggilan
+         *      jika object, maka memiliki 2 property:
+         *      object.name: nama column asli, object.alias: alias dari column asli untuk mempermudah pemanggilan
          * @param alias: alias dari nama column, default false.
-         * jika true, maka column harus berupa object
+         *      jika true, maka column harus berupa object
          */
         setColumn: function(column, alias = false) {
             // jika alias diisi
             if(alias) {
-                this.column.push({column: column, alias: alias});
+                this.column.push({
+                    column: column, 
+                    alias: alias
+                });
             }
             else {
                 this.column.push(column);
@@ -47,31 +64,83 @@ define("UsrGetDataSchemaModule", [], function() {
         /**
          * Method getColumn
          * untuk get data property column yg sudah diset sebelumnya
-         * @param schema: var schema di method getDataSchema
+         * @param esq: var create shcema
          */
-        getColumn: function(schema) {
-            this.column.forEach(function(item){
-                // console.log(item);
-
-                // jika item dengan alias
-                if(typeof(item) == "object") { 
-                    schema.addColumn(item.column, item.alias);
-                }
-                // jika item tanpa alias
-                else {
-                    schema.addColumn(item);
-                }
+        getColumn: function(esq) {
+            // jika column ada isinya
+            if(this.column.length > 0) {
+                this.column.forEach(function(item){
+                    // jika item dengan alias
+                    if(typeof(item) == "object") { 
+                        esq.addColumn(item.column, item.alias);
+                    }
+                    // jika item tanpa alias
+                    else {
+                        esq.addColumn(item);
+                    }
+                });
+            }
+            // jika kolom tidak ada isinya, maka set default Id
+            else { 
+                esq.addColumn("Id");
+            }
+        },
+        /**
+         * Method setFilter
+         * set property filter sesuai dgn inputan yg diinginkan
+         * @param column: nama colum (harus sesuai dgn di section wizard)
+         * @param value: nilai dari yg ingin di filter
+         * @param equal: berupa boolean, dan defaultnya true. jika true maka data yg dicari adalah yg sama
+         *      jika false, maka data yg dicari adalah yg tidak sama
+         */
+        setFilter: function(column, value, equal = true) {
+            this.filter.push({
+                column: column, 
+                value: value, 
+                equal: equal
             });
+        },
+        /**
+         * Method getFilter
+         * untuk get data property filter yg sudah diset sebelumnya
+         * @param esq: var create shcema
+         * @param logical: logic untuk filter pencarian, berupa boolean.
+         *      default false. jika false maka filter menggunakan OR
+         *      jika true maka filter menggunakan AND
+         */
+        getFilter: function(esq, logical = false) {
+            // jika filter di set
+            if(this.filter.length > 0) {
+                var i = 0;
+                
+                // logical filter (AND/OR)
+                esq.filters.logicalOperation = (!logical) ? 
+                    Terrasoft.LogicalOperatorType.OR : Terrasoft.LogicalOperatorType.AND;
+                
+                // pecah filter
+                this.filter.forEach(function(item) {
+                    i++;
+                    var tempColumn = item.column;
+                    var tempValue = item.value;
+                    var tempNameFilter = item.column+i;
+                    var tempValueFilter = (item.equal) ? 
+                        esq.createColumnFilterWithParameter(Terrasoft.ComparisonType.EQUAL, tempColumn, tempValue) : 
+                        esq.createColumnFilterWithParameter(Terrasoft.ComparisonType.NOT_EQUAL, tempColumn, tempValue);
+                    
+                    // add filter ke esq
+                    esq.filters.add(tempNameFilter, tempValueFilter);
+                });
+            }
         },
         /**
          * Method getDataSchemaById
          * untuk get data sesuai dgn schema yg dipilih
          * @param schema: nama schema yang dicari
          * @param id: data yang ingin dicari di schema, dapat berupa object/string
-         * jika object maka formatnya ada 2 property yaitu:
-         * search.id: mencari berdasarkan column apa, default id
-         * search.data: data yg akan dibandingkan dengan id
-         * jika bukan object maka search berupa data yg ingin dicari
+         *      jika object maka formatnya ada 2 property yaitu:
+         *      search.id: mencari berdasarkan column apa, default id
+         *      search.data: data yg akan dibandingkan dengan id
+         *      jika bukan object maka search berupa data yg ingin dicari
          * @param callbackResponse: output berupa callback
          * @return berupa response callback
          */
@@ -101,7 +170,6 @@ define("UsrGetDataSchemaModule", [], function() {
                 }
                 // jika sukses
                 var data = globalThis.getResultEntity(result);
-                // var message = () ? "Data Tidak Ditemukan" : null;
                 callbackResponse({
                     status: true, 
                     data: data,
@@ -113,9 +181,16 @@ define("UsrGetDataSchemaModule", [], function() {
             }, this);
         },
         /**
-         * 
+         * Method getAllDataSchema
+         * untuk get semua data di schema yg dipilih
+         * @param schema: nama schema yang dicari
+         * @param logical: logic untuk filter pencarian, berupa boolean.
+         *      default false. jika false maka filter menggunakan OR
+         *      jika true maka filter menggunakan AND
+         * @param callbackResponse: output berupa callback
+         * @returns berupa response callback
          */
-        getAllDataSchema: function(schema, filterBy = false, callbackResponse) {
+        getAllDataSchema: function(schema, logical = false, callbackResponse) {
             var globalThis = this;
 
             // inisialiasi create schema
@@ -127,7 +202,7 @@ define("UsrGetDataSchemaModule", [], function() {
             this.getColumn(esq);
 
             // filter by and conditional filter
-            
+            this.getFilter(esq, logical); 
 
             // get data sesuai dgn filter
             esq.getEntityCollection(function(result) {
@@ -138,22 +213,24 @@ define("UsrGetDataSchemaModule", [], function() {
                         message: "Data Query Error"
                     });
 
-                    // reset column
+                    // reset column dan filter
                     globalThis.column = [];
+                    globalThis.filter = [];
                     return;
                 }
-
+                
                 // jika sukses
                 var data = globalThis.getResultEntity(result, false);
-                // var message = () ? "Data Tidak Ditemukan" : null;
+                var message = (data.length < 1) ? "Data Not Found" : null;
                 callbackResponse({
                     status: true, 
                     data: data,
                     message: null
                 });
-
-                // reset column
+                
+                // reset column dan filter
                 globalThis.column = [];
+                globalThis.filter = [];
             }, this);
         },
         /**
@@ -186,6 +263,7 @@ define("UsrGetDataSchemaModule", [], function() {
                     }
                 });
             }
+            // jika byId false, untuk data set
             else {
                 // pecah hasil result collection
                 resultEntity.collection.each(function(value) {

@@ -1,4 +1,6 @@
-define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetDataSchemaModule) {
+define("UsrCustomerKonveksi21Page", 
+	["UsrGetDataSchemaModule", "VisaHelper", "LookupUtilities", "BaseFiltersGenerateModule", "css!VisaHelper"], 
+	function(UsrGetDataSchemaModule, VisaHelper, LookupUtilities, BaseFiltersGenerateModule) {
 	return {
 		entitySchemaName: "UsrCustomerKonveksi2",
 		attributes: {
@@ -22,48 +24,25 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
              * yang pertama kali dijalankan
              */
             onEntityInitialized: function() {
-                this.callParent(arguments);
-
+				this.callParent(arguments);
+						
                 console.log("Running module Customer Konveksi...");
                 console.log("-----------------------------------");
-                
-                console.log(this.get("Id"));
-                this.checkAddress(this.get("Id"), function(response) {
-                	console.log(response);
-                	
-                	if(response.status){
-                		if(response.data.alamat.toLowerCase() == 'bandung'){
-	                		console.log("Ini Bandung");
-	                	}
-	                	else if(response.data.alamat.toLowerCase() == 'kali item'){
-	                		console.log("Ini Kali Item");
-	                	}
-	                	else if(response.data.alamat.toLowerCase() == 'heaven'){
-	                		console.log("Ini Heaven");
-	                	}
-	                	else if(response.data.alamat.toLowerCase() == 'cisaranten'){
-	                		console.log("Ini Cisaranten");
-	                	}
-	                	else if(response.data.alamat.toLowerCase() == 'uk'){
-	                		console.log("Ini UK");
-	                	}
-	                	// else if(response.data.alamat.toLowerCase() == 'jonggol'){
-	                	// 	console.log("Ini Bandung");
-	                	// }
-	                	else {
-	                		console.log("tidak ada alamatnya");
-	                	}
-                	}
-	                	
-                });
-                
-            },
-            checkAddress: function(id, callback) {
-            	UsrGetDataSchemaModule.setColumn("UsrCustomerKonveksi2Address", "alamat");
-            	UsrGetDataSchemaModule.getDataSchemaById("UsrCustomerKonveksi2", id, function(response) {
-                    callback(response);
-				});
-            },
+			},
+			/**
+			 * method customize printable
+			 */
+			preparePrintFormsMenuCollection: function(printForms) {
+				this.callParent(arguments);
+
+				printForms.eachKey(function(key, item) {
+					// jika alamatnya bandung maka hide print
+					if(this.get("UsrCustomerKonveksi2Address") == 'Bandung') {
+						item.set("Visible", false);
+						console.log("PrintTable di Hide");
+					}
+				}, this);
+			},
             /**
              * method onChangeFullName
              * setiap kali ada perubahan di field full name akan mengubah field email dan phone

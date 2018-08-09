@@ -26,6 +26,43 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
 
                 console.log("Running module Customer Konveksi...");
                 console.log("-----------------------------------");
+                
+                console.log(this.get("Id"));
+                this.checkAddress(this.get("Id"), function(response) {
+                	console.log(response);
+                	
+                	if(response.status){
+                		if(response.data.alamat.toLowerCase() == 'bandung'){
+	                		console.log("Ini Bandung");
+	                	}
+	                	else if(response.data.alamat.toLowerCase() == 'kali item'){
+	                		console.log("Ini Kali Item");
+	                	}
+	                	else if(response.data.alamat.toLowerCase() == 'heaven'){
+	                		console.log("Ini Heaven");
+	                	}
+	                	else if(response.data.alamat.toLowerCase() == 'cisaranten'){
+	                		console.log("Ini Cisaranten");
+	                	}
+	                	else if(response.data.alamat.toLowerCase() == 'uk'){
+	                		console.log("Ini UK");
+	                	}
+	                	// else if(response.data.alamat.toLowerCase() == 'jonggol'){
+	                	// 	console.log("Ini Bandung");
+	                	// }
+	                	else {
+	                		console.log("tidak ada alamatnya");
+	                	}
+                	}
+	                	
+                });
+                
+            },
+            checkAddress: function(id, callback) {
+            	UsrGetDataSchemaModule.setColumn("UsrCustomerKonveksi2Address", "alamat");
+            	UsrGetDataSchemaModule.getDataSchemaById("UsrCustomerKonveksi2", id, function(response) {
+                    callback(response);
+				});
             },
             /**
              * method onChangeFullName
@@ -83,17 +120,9 @@ define("UsrCustomerKonveksi21Page", ["UsrGetDataSchemaModule"], function(UsrGetD
 			 */
 			setField: function(data) {
 				// set data field
-				
-				// jika memakai getDataSchemaById
-				// this.set("UsrName", data.Name);
-				// this.set("UsrCustomerKonveksi2Email", data.Email);
-				// this.set("UsrCustomerKonveksi2MobilePhone", data.HP);
-				
-				// jika memakai getAllDataSchema
 				this.set("UsrName", data[0].Name);
 				this.set("UsrCustomerKonveksi2Email", data[0].Email);
 				this.set("UsrCustomerKonveksi2MobilePhone", data[0].HP);
-
 				console.log(this.get("UsrName"));
 			},
             /**

@@ -7,10 +7,11 @@ define("NamaModule", ["jQuery"], function(jQuery) {
         /**
          * Method get data api
          * method ini menggunakan prinsip kerja ajax dengan bantuan jQuery
-         * @param url: url akses api, berupa string
-         * @param type: type akses api. GET / POST, berupa string
-         * @param dataType: tipe data balikan dari api, JSON, berupa string
-         * @param data: data parameter yg dibutuhkan oleh api, berupa object
+         * @param url {string}: url akses api, berupa string
+         * @param type {string}: type akses api. GET / POST, berupa string
+         * @param dataType {string}: tipe data balikan dari api, JSON, berupa string
+         * @param data {Object}: data parameter yg dibutuhkan oleh api, berupa object
+         * @param callback {function}
          * @returns berupa callback
          * 
          * catatan: bisa secara langsung tanpa menggunakan param, ini hanya contoh sederhana

@@ -1,14 +1,14 @@
 /**
  * 
  */
-define("queryDataSchemaModule", [], 
+define("UsrQueryDataSchemaModule", [], 
     function() {
         return {
             /**
              * 
              */
             init: function() {
-                console.log("Running Module queryDataSchemaModule");
+                console.log("Running Module UsrQueryDataSchemaModule");
                 console.log("------------------------------------");
             },
             /**
@@ -55,28 +55,28 @@ define("queryDataSchemaModule", [],
              * @param type {string} 
              */
             getDataType: function(type) {
-                switch (type.toLowerCase()) {
-                    case 'float':
+                switch (type {
+                    case 'FLOAT':
                         return Terrasoft.DataValueType.FLOAT;
                         break;
                     
-                    case 'integer':
+                    case 'INTEGER':
                         return Terrasoft.DataValueType.INTEGER;
                         break;
 
-                    case 'boolean':
+                    case 'BOOLEAN':
                         return Terrasoft.DataValueType.BOOLEAN;
                         break;
 
-                    case 'lookup':
+                    case 'LOOKUP':
                         return Terrasoft.DataValueType.LOOKUP;
                         break;
 
-                    case 'guid':
+                    case 'GUID':
                         return Terrasoft.DataValueType.GUID;
                         break;
 
-                    case 'text':
+                    case 'TEXT':
                         return Terrasoft.DataValueType.TEXT;
                         break;
 

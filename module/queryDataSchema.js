@@ -1,7 +1,7 @@
 /**
  * 
  */
-define("UsrQueryDataSchemaModule", [], 
+define("queryDataSchemaModule", [], 
     function() {
         return {
             /**
@@ -16,7 +16,7 @@ define("UsrQueryDataSchemaModule", [],
              * @param data {object}
              */
             insert: function(schema, data) {
-
+                
             },
             /**
              * @param schema {string}

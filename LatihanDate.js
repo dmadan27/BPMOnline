@@ -101,7 +101,7 @@ define("UsrLatihanDate1Page", [], function() {
             /**
              * Method getDate
              * Fungsi untuk mendapatkan property date dari tgl hingga tahun
-             * @param date {object} berupa object date js
+             * @param {object} date berupa object date js
              * @return {object} property day, date, month, year secara terpisah
              */
             getDate: function(date) {
@@ -126,8 +126,8 @@ define("UsrLatihanDate1Page", [], function() {
             /**
              * Method getMonths
              * Fungsi untuk konversi bulan ke text, tersedia untuk indo dan inggris
-             * @param date {object} berupa object date js
-             * @param english {boolean} default true, jika true maka english, false indo
+             * @param {object} date berupa object date js
+             * @param {boolean} english default true, jika true maka english, false indo
              * @return {string} month sesuai dgn pilihan english or not
              */
             getMonths: function(date, english = true) {
@@ -149,8 +149,8 @@ define("UsrLatihanDate1Page", [], function() {
             /**
              * Method getDays
              * Fungsi untuk konversi bulan ke text, tersedia untuk indo dan inggris
-             * @param date {object} berupa object date js
-             * @param english {boolean} default true, jika true maka english, false indo
+             * @param {object} date berupa object date js
+             * @param {boolean} english default true, jika true maka english, false indo
              * @return {string} text day sesuai dgn pilihan english or not
              */
             getDays: function(date, english = true) {

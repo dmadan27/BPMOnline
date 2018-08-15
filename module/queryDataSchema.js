@@ -11,19 +11,21 @@ define("queryDataSchemaModule", [],
                 console.log("Running Module UsrQueryDataSchemaModule");
                 console.log("------------------------------------");
             },
+
             /**
-             * @param schema {string}
-             * @param data {object}
+             * @param {string} schema
+             * @param {object} data
              */
             insert: function(schema, data) {
                 
             },
+
             /**
-             * @param schema {string}
-             * @param id {string}
-             * @param data {object}: property column, value, type
-             * @param callback {function}
-             * @return {callback} berupa response callback dalam bentuk object
+             * @param {string} schema
+             * @param {string} id
+             * @param {object} data : property column, value, type
+             * @param {function} callback
+             * @return {function} berupa response callback dalam bentuk object
              */
             update: function(schema, id, data, callback) {
                 // inisialiasi create schema for update
@@ -44,15 +46,20 @@ define("queryDataSchemaModule", [],
                     });
                 }, this);
             },
+
             /**
-             * @param schema {string}
-             * @param id {string}
+             * @param {string} schema
+             * @param {string} id
+             * @param {function} callback
+             * @return {function} berupa callback response
              */
-            delete: function(schema, id) {
+            delete: function(schema, id, callback) {
 
             },
+
             /**
-             * @param type {string} 
+             * @param {string} type
+             * @returns {object}
              */
             getDataType: function(type) {
                 switch (type {
@@ -86,6 +93,7 @@ define("queryDataSchemaModule", [],
                         break;
                 }
             },
+
         };
     }
 );

@@ -15,6 +15,7 @@ define("queryDataSchemaModule", [],
             /**
              * @param {string} schema
              * @param {object} data
+             * @return {function}
              */
             insert: function(schema, data) {
                 

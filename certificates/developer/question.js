@@ -813,7 +813,10 @@ var question = [
             "When subscribing to a broadcast message without a channel, only one subscriber will get the passed parameters",
             "A broadcast message returns an object, while the point-to-point message does not"
         ],
-        answer: "",
+        answer: [
+            "A point-to-point message returns an object, while a broadcast message does not",
+            "When subscribing to a point-to-point message without a channel, only one subscriber will get the passed parameters"
+        ],
     },
     {
         no: 63,
@@ -1650,34 +1653,65 @@ var question = [
         name: "Create new filter \"Attention\" in the Activity section grid page (near Owner and Date filters). When turned on, only overdue activities and high priority today activities should be displayed. Filter should use current user time zone.",
         type: "essay",
         choice: [],
-        answer: "",
+        answer: [
+          "special filter added (8)",
+          "filter activation and deactivation is implemented (4)",
+          "filter conditions are added to the common select query for the section (8)",
+          "current user time zone is taken into consideration (5)"
+        ],
     },
     {
         no: 131,
         name: "On the Product edit page, develop a new button or action for calculating product popularity. Popularity is calculated as the ratio of the number of products in invoice records that contain the current product, to the total number of products in invoice records. Display the calculation result as a percentage using the message window.",
         type: "essay",
         choice: [],
-        answer: "",
+        answer: [
+          "product popularity calculation implemented (14)",
+          "result message is shown (5)"
+        ],
     },
     {
         no: 132,
         name: "On the Account edit page, implement automatic calculation of the quantity of invoices for a given account and display this value, as well as the total payment amount of account invoices. Consider only invoices that have not been canceled. Calculated values should be saved in new separate fields of the account page. The edit page’s fields are visible only for accounts of the \"Customer\" type.",
         type: "essay",
         choice: [],
-        answer: "",
+        answer: [
+          "invoices count and total amount calculation implemented (14)",
+          "columns visibility implemented (5)"
+        ],
     },
     {
         no: 133,
         name: "Download package Debug02 using the link. Install package on your development environment. This package contains customization in Contacts section (additional column values calculation programmed). As result opening of edit page is not working, white page appears and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
         type: "essay",
         choice: [],
-        answer: "",
+        answer: [
+          "Package installed (1)",
+          "Error located (4)"
+        ],
     },
     {
         no: 134,
         name: "Create new detail “Overdue Invoices” in Account edit page. This detail should display invoices which Payment status is not equal to “Paid”. Add new column “Overdue invoices count” near the detail. This column should display the number of overdue invoices. Its value should update each time when Account edit page is opened.",
         type: "essay",
         choice: [],
-        answer: "",
+        answer: [
+          "new detail created (5)",
+          "new column added (5)",
+          "column calculation implemented (14)",
+          "multi language caption added (1)"
+        ],
+    },
+    {
+        no: 135,
+        name: "On the Contact edit page, implement a new integer field called \“User rating\”. The field should be displayed only for contacts of the \“Employee\” type. The value is calculated as a sum of a user's activity duration in minutes, for all activities in the last 60 days. The field value should only be calculated for contacts of the \“Employee\” type.",
+        type: "essay",
+        choice: [],
+          answer: [
+          "new columns added to the edit page (5)",
+          "contact rating calculation implemented (14)",
+          "column visibility implemented (5)",
+          "multi language column captions added (1)"
+        ],
     },
 ];

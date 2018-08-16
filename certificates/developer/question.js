@@ -457,7 +457,10 @@ var question = [
             "FetchRecords()",
             "GetEntity(UserConnection, Id)"
         ],
-        answer: "",
+        answer: [
+          "GetEntityCollection(UserConnection)",
+          "GetEntity(UserConnection, Id)"
+        ],
     },
     {
         no: 36,

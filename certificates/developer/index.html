@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Cheat Sheets BPM'Online</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- load css bs 3.3.7 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h3 class="text-center">Cheat Sheets for Test BPM'Online</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="col-xs-offset-1 col-xs-10 col-xs-offset-1">
+                            <!-- search input -->
+                            <input class="form-control input-lg" type="text" id="seacrh" placeholder="Search Question">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <!-- table list question -->
+                    <table class="table table-hover table-border" id="tableListQuestion" border="1">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Question</th>
+                                <th>Type</th>
+                                <th>Choice</th>
+                                <th>Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- load jQuery latest -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- load list question -->
+        <script src="question.js"></script>
+        <!-- load js custom -->
+        <script>
+            $(document).ready(function(){
+                // console.log(question);
+                getList();
+
+                $('#seacrh').on("keyup", function(){
+                    console.log($(this).val());
+                    seacrhQuestion($(this).val().toLowerCase());
+                });
+            });
+            
+            /**
+             * 
+             */
+            function getList(){
+                $.each(question, function(index, item){
+                    var list = '<tr>'+
+                        // no
+                        '<td>'+item.no+'</td>'+
+                        // question
+                        '<td>'+item.name+'</td>'+
+                        // type
+                        '<td>'+item.type+'</td>'+
+                        // choice
+                        '<td>'+getChoice(item.choice)+'</td>'+
+                        // answer
+                        '<td>'+getAnswer(item.type, item.answer)+'</td>'+
+                    '</tr>';
+                    $('#tableListQuestion > tbody:last-child').append(list);
+                });                 
+            }
+
+            /**
+             * 
+             */
+            function getChoice(choice){
+                var listChoice = '<ul>';
+
+                $.each(choice, function(index, item){
+                    listChoice += '<li>'+item+'</li>';
+                });
+                
+                listChoice += '</ul>';
+
+                return listChoice;
+            }
+            
+            /**
+             * 
+             */
+            function getAnswer(type, answer){
+                if(type == 'checkbox'){
+                    var listAnswer = '<ul>';
+                    $.each(answer, function(index, item){
+                        listAnswer += '<li>'+item+'</li>';
+                    });
+                    listAnswer += '</ul>';
+
+                    return listAnswer;
+                }
+                else if(type == 'radio') return answer;
+                else return answer;
+            }
+
+            /**
+             * 
+             */
+            function seacrhQuestion(search){
+                $('#tableListQuestion tbody tr').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1)
+                });
+            }
+            
+            /**
+             * 
+             */
+             function fieldAnswer(questionIndex, choice, type){
+                var multiple = function(){
+                    if(type == "radio") return '';
+                    else if(type == 'checkbox') return 'multiple';
+                    else return ''; 
+                };
+
+                var field = '<select '+multiple()+' onchange="onChange_answer('+questionIndex+', this)" class="form-control input-sm">';     
+                $.each(choice, function(index, item){
+                    field += '<option value="'+index+'">'+item+'</option>';
+                });
+                
+                field += '</select>';
+
+                return field;
+            }
+
+        </script>
+    </body>
+</html>

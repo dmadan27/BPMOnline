@@ -1638,7 +1638,12 @@ var question = [
         name: "Configure settings so that a user cannot save an invoice if the total amount of a customer's debt (taking into account the amount of the current invoice) exceeds $4,000",
         type: "essay",
         choice: [],
-        answer: "",
+        answer: [
+          "debt calculation implemented (14)",
+          "debt amount is shown when saving an invoice (5)",
+          "multi language message text added (1)",
+          "saving of record is forbidden if debt is higher than limit value (5)"
+        ],
     },
     {
         no: 130,

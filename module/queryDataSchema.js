@@ -15,9 +15,10 @@ define("queryDataSchemaModule", [],
             /**
              * @param {string} schema
              * @param {object} data
-             * @return {function}
+             * @param {function} callback
+             * @return {function} response callback
              */
-            insert: function(schema, data) {
+            insert: function(schema, data, callback) {
                 
             },
 
@@ -55,7 +56,7 @@ define("queryDataSchemaModule", [],
              * @return {function} berupa callback response
              */
             delete: function(schema, id, callback) {
-
+                
             },
 
             /**

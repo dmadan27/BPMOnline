@@ -170,7 +170,10 @@ var question = [
             "Explicit filter specification in column description attributes property for view model",
             "Use filterConditions property when configuring attributes in view model"
         ],
-        answer: "",
+        answer: [
+          "Explicit filter specification in column description attributes property for view model",
+          "Use FILTRATION business rule"
+        ],
     },
     {
         no: 14,

@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <h3 class="text-center">Cheat Sheets for Test BPM'Online</h3>
             <hr>
             <div class="row">
@@ -27,14 +27,16 @@
             <br/>
             <div class="row">
                 <div class="col-md-12 col-xs-12">
+                    <!-- Notif Not Found -->
+                    <h1 id="text" class="text-center" style="display: none;"></h1>
                     <!-- table list question -->
-                    <table class="table table-hover table-border" id="tableListQuestion" border="1">
+                    <table style="display: none" class="table table-hover table-border" id="tableListQuestion" border="1">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <!-- <th>No</th> -->
                                 <th>Question</th>
                                 <th>Type</th>
-                                <th>Choice</th>
+                                <!-- <th>Choice</th> -->
                                 <th>Answer</th>
                             </tr>
                         </thead>
@@ -54,11 +56,19 @@
         <script>
             $(document).ready(function(){
                 // console.log(question);
+                $('#tableListQuestion').css('display', 'none');
+                $('#text').css('display', 'none');
                 getList();
 
                 $('#seacrh').on("keyup", function(){
                     console.log($(this).val());
-                    seacrhQuestion($(this).val().toLowerCase());
+                    if($(this).val() != ""){
+                        seacrhQuestion($(this).val().toLowerCase());
+                    }
+                    else{
+                        $('#tableListQuestion').css('display', 'none');
+                        $('#text').css('display', 'none');
+                    }
                 });
             });
             
@@ -69,13 +79,13 @@
                 $.each(question, function(index, item){
                     var list = '<tr>'+
                         // no
-                        '<td>'+item.no+'</td>'+
+                        // '<td>'+item.no+'</td>'+
                         // question
                         '<td>'+item.name+'</td>'+
                         // type
                         '<td>'+item.type+'</td>'+
                         // choice
-                        '<td>'+getChoice(item.choice)+'</td>'+
+                        // '<td>'+getChoice(item.choice)+'</td>'+
                         // answer
                         '<td>'+getAnswer(item.type, item.answer)+'</td>'+
                     '</tr>';
@@ -104,6 +114,10 @@
             function getAnswer(type, answer){
                 if(type == 'checkbox'){
                     var listAnswer = '<ul>';
+                    if(answer.length < 1){
+                        return "-";
+                    }
+
                     $.each(answer, function(index, item){
                         listAnswer += '<li>'+item+'</li>';
                     });
@@ -111,8 +125,8 @@
 
                     return listAnswer;
                 }
-                else if(type == 'radio') return answer;
-                else return answer;
+                else if(type == 'radio') return (answer != "") ? answer : "-";
+                else return (answer != "") ? answer : "-";
             }
 
             /**
@@ -120,7 +134,17 @@
              */
             function seacrhQuestion(search){
                 $('#tableListQuestion tbody tr').filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1)
+                    if($(this).toggle($(this).text().toLowerCase().indexOf(search) > -1) && search != ""){
+                        console.log("Pencarian Pertanyaan "+search+" Ketemu");
+                        // console.log($(this).toggle($(this).text().toLowerCase().indexOf(search)));
+                        $('#tableListQuestion').slideDown();
+                        $('#text').slideUp();
+                    }
+                    else{
+                        $('#tableListQuestion').slideUp();
+                        $('#text').html("Not Found !!").slideDown();
+                        console.log("Not Found !!");
+                    }
                 });
             }
             

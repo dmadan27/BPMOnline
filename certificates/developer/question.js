@@ -129,7 +129,7 @@ var question = [
             "Ctrl + Shift + I (for Chrome and Firefox)",
             "F12",
             "F10",
-            "F1"  
+            "F1"
         ],
         answer: [
             "Ctrl + Shift + I (for Chrome and Firefox)",
@@ -404,7 +404,7 @@ var question = [
         choice: [
             "\"Edit page\" element",
             "\"Script task\" element",
-            "\"Modify data\" element" 
+            "\"Modify data\" element"
         ],
         answer: "\"Edit page\" element",
     },
@@ -924,7 +924,7 @@ var question = [
             "var responseObject = this.GetResponce(\"CopyProductsResult\");",
             "var responseObject = this.GetResponse(«CopyProducts»);",
             "var responseObject = response.CopyProductsResult;",
-            "var responseObject = response.CopyProducts;"  
+            "var responseObject = response.CopyProducts;"
         ],
         answer: "var responseObject = response.CopyProductsResult;",
     },
@@ -1047,7 +1047,10 @@ var question = [
             "When opening edit pages for addition",
             "When saving edit pages"
         ],
-        answer: "",
+        answer: [
+            "When switching focus from field with validation",
+            "When saving edit pages"
+        ],
     },
     {
         no: 83,
@@ -1107,7 +1110,7 @@ var question = [
             "In the \"Source code\" schema, define a class that inherits the Terrasoft.Configuration.Service class. Mark it with the [ServiceContract] attribute. In this class, implement service methods and data types. Mark methods with [OperationContract] attributes, and data types - with the [DataContract] attributes",
             // false
             "In the \"Source code\" schema, add an instance class Terrasoft.Configuration.Service. To add a method to a service, call the AddServiceMethod() function on an instance and pass string with the service method implementation program code as a parameter to that function",
-            "In the \"Source code\" schema, define a class and mark it with the [ServiceContract] attribute. In this class, implement service methods and data types. Mark methods with the [OperationContract] attribute, and data types with the [DataContract] attribute"  
+            "In the \"Source code\" schema, define a class and mark it with the [ServiceContract] attribute. In this class, implement service methods and data types. Mark methods with the [OperationContract] attribute, and data types with the [DataContract] attribute"
         ],
         answer: "",
     },
@@ -1136,7 +1139,7 @@ var question = [
             "GetTypedColumnValue()"
         ],
         answer: [
-            
+
         ]
     },
     {
@@ -1504,11 +1507,12 @@ var question = [
             // false
             "SQL scripts are main configuration elements that describe the structure of data base tables, business processes and their elements, reports, lists of pictures and modules.",
             "SQL scripts perform additional actions with the database before or after installing the package",
+            // false
             "SQL scripts are DLL files that enable integration with third-party applications",
             // false
             "SQL scripts are section and lookup records that are a part of the package. These are base values of lookups, system settings, demo data, etc."
         ],
-        answer: "",
+        answer: "SQL scripts perform additional actions with the database before or after installing the package",
     },
     {
         no: 120,
@@ -1601,6 +1605,15 @@ var question = [
     },
     {
         no: 127,
+        name: "What schema must be used as a parent for a section schema?",
+        type: "radio",
+        choice: [
+            "BaseSectionV2",
+      ],
+      answer: "BaseSectionV2",
+    },
+    {
+        no: 128,
         name: "Specify all element types that can be composed into package",
         type: "checkbox",
         choice: [
@@ -1615,42 +1628,42 @@ var question = [
         answer: "",
     },
     {
-        no: 128,
+        no: 129,
         name: "Configure settings so that a user cannot save an invoice if the total amount of a customer's debt (taking into account the amount of the current invoice) exceeds $4,000",
         type: "essay",
         choice: [],
         answer: "",
     },
     {
-        no: 129,
+        no: 130,
         name: "Create new filter \"Attention\" in the Activity section grid page (near Owner and Date filters). When turned on, only overdue activities and high priority today activities should be displayed. Filter should use current user time zone.",
         type: "essay",
         choice: [],
         answer: "",
     },
     {
-        no: 130,
+        no: 131,
         name: "On the Product edit page, develop a new button or action for calculating product popularity. Popularity is calculated as the ratio of the number of products in invoice records that contain the current product, to the total number of products in invoice records. Display the calculation result as a percentage using the message window.",
         type: "essay",
         choice: [],
         answer: "",
     },
     {
-        no: 131,
+        no: 132,
         name: "On the Account edit page, implement automatic calculation of the quantity of invoices for a given account and display this value, as well as the total payment amount of account invoices. Consider only invoices that have not been canceled. Calculated values should be saved in new separate fields of the account page. The edit page’s fields are visible only for accounts of the \"Customer\" type.",
         type: "essay",
         choice: [],
         answer: "",
     },
     {
-        no: 132,
+        no: 133,
         name: "Download package Debug02 using the link. Install package on your development environment. This package contains customization in Contacts section (additional column values calculation programmed). As result opening of edit page is not working, white page appears and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
         type: "essay",
         choice: [],
         answer: "",
     },
     {
-        no: 133,
+        no: 134,
         name: "Create new detail “Overdue Invoices” in Account edit page. This detail should display invoices which Payment status is not equal to “Paid”. Add new column “Overdue invoices count” near the detail. This column should display the number of overdue invoices. Its value should update each time when Account edit page is opened.",
         type: "essay",
         choice: [],

@@ -1624,8 +1624,8 @@ var question = [
         type: "radio",
         choice: [
             "BaseSectionV2",
-      ],
-      answer: "BaseSectionV2",
+        ],
+        answer: "BaseSectionV2",
     },
     {
         no: 128,
@@ -1646,100 +1646,118 @@ var question = [
         no: 129,
         name: "Configure settings so that a user cannot save an invoice if the total amount of a customer's debt (taking into account the amount of the current invoice) exceeds $4,000",
         type: "essay",
-        choice: [],
+        choice: [
+            "debt calculation implemented (14)",
+            "debt amount is shown when saving an invoice (5)",
+            "multi language message text added (1)",
+            "saving of record is forbidden if debt is higher than limit value (5)"
+        ],
         answer: [
-          "debt calculation implemented (14)",
-          "debt amount is shown when saving an invoice (5)",
-          "multi language message text added (1)",
-          "saving of record is forbidden if debt is higher than limit value (5)"
+          
         ],
     },
     {
         no: 130,
         name: "Create new filter \"Attention\" in the Activity section grid page (near Owner and Date filters). When turned on, only overdue activities and high priority today activities should be displayed. Filter should use current user time zone.",
         type: "essay",
-        choice: [],
+        choice: [
+            "special filter added (8)",
+            "filter activation and deactivation is implemented (4)",
+            "filter conditions are added to the common select query for the section (8)",
+            "current user time zone is taken into consideration (5)"
+        ],
         answer: [
-          "special filter added (8)",
-          "filter activation and deactivation is implemented (4)",
-          "filter conditions are added to the common select query for the section (8)",
-          "current user time zone is taken into consideration (5)"
+          
         ],
     },
     {
         no: 131,
         name: "On the Product edit page, develop a new button or action for calculating product popularity. Popularity is calculated as the ratio of the number of products in invoice records that contain the current product, to the total number of products in invoice records. Display the calculation result as a percentage using the message window.",
         type: "essay",
-        choice: [],
+        choice: [
+            "product popularity calculation implemented (14)",
+            "result message is shown (5)",
+            "new action added to the section actions (5)",
+            "multi language message text added (1)"
+        ],
         answer: [
-          "product popularity calculation implemented (14)",
-          "result message is shown (5)",
-          "new action added to the section actions (5)",
-          "multi language message text added (1)"
+          
         ],
     },
     {
         no: 132,
         name: "On the Account edit page, implement automatic calculation of the quantity of invoices for a given account and display this value, as well as the total payment amount of account invoices. Consider only invoices that have not been canceled. Calculated values should be saved in new separate fields of the account page. The edit page’s fields are visible only for accounts of the \"Customer\" type.",
         type: "essay",
-        choice: [],
+        choice: [
+            "invoices count and total amount calculation implemented (14)",
+            "columns visibility implemented (5)"
+        ],
         answer: [
-          "invoices count and total amount calculation implemented (14)",
-          "columns visibility implemented (5)"
+            
         ],
     },
     {
         no: 133,
         name: "Download package Debug02 using the link. Install package on your development environment. This package contains customization in Contacts section (additional column values calculation programmed). As result opening of edit page is not working, white page appears and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
         type: "essay",
-        choice: [],
+        choice: [
+            "Package installed (1)",
+            "Error located (4)"
+        ],
         answer: [
-          "Package installed (1)",
-          "Error located (4)"
+          
         ],
     },
     {
         no: 134,
         name: "Create new detail “Overdue Invoices” in Account edit page. This detail should display invoices which Payment status is not equal to “Paid”. Add new column “Overdue invoices count” near the detail. This column should display the number of overdue invoices. Its value should update each time when Account edit page is opened.",
         type: "essay",
-        choice: [],
+        choice: [
+            "new detail created (5)",
+            "new column added (5)",
+            "column calculation implemented (14)",
+            "multi language caption added (1)"
+        ],
         answer: [
-          "new detail created (5)",
-          "new column added (5)",
-          "column calculation implemented (14)",
-          "multi language caption added (1)"
+            
         ],
     },
     {
         no: 135,
         name: "On the Contact edit page, implement a new integer field called \“User rating\”. The field should be displayed only for contacts of the \“Employee\” type. The value is calculated as a sum of a user's activity duration in minutes, for all activities in the last 60 days. The field value should only be calculated for contacts of the \“Employee\” type.",
         type: "essay",
-        choice: [],
-          answer: [
-          "new columns added to the edit page (5)",
-          "contact rating calculation implemented (14)",
-          "column visibility implemented (5)",
-          "multi language column captions added (1)"
+        choice: [
+            "new columns added to the edit page (5)",
+            "contact rating calculation implemented (14)",
+            "column visibility implemented (5)",
+            "multi language column captions added (1)"
+        ],
+        answer: [
+          
         ],
     },
     {
         no: 136,
         name: "Download package Debug03 using the link. Install package on your development environment. This package contains customization in Accounts section (additional column values calculation programmed). As result when changing Type column value edit page fails and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
         type: "essay",
-        choice: [],
-          answer: [
+        choice: [
             "Package installed (1)",
             "Error located (4)"
+        ],
+        answer: [
+            
         ],
     },
     {
         no: 137,
         name: "Download package Debug01 using the link. Install package on your development environment. This package contains customization in Documents edit page (additional validation of column values added). As result saving of changes is not performed, and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
         type: "essay",
-        choice: [],
-          answer: [
+        choice: [
             "Package installed (1)",
             "Error located (4)"
+        ],
+        answer: [
+            
         ],
     },
 ];

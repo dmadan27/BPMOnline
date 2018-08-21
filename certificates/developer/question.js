@@ -384,7 +384,12 @@ var question = [
             "Rule parameters are set in its configuration object",
             "All rules are described in the \"rules\" property of the page view model"
         ],
-        answer: "",
+        answer: [
+          "A rule has a name",
+          "Rules are applied to the view model columns and not to view controls",
+          "Rule parameters are set in its configuration object",
+          "All rules are described in the \"rules\" property of the page view model"
+        ],
     },
     {
         no: 30,
@@ -480,7 +485,7 @@ var question = [
             "Page.Cache[\"Key\"] = \"Data\"",
         ],
         answer: [
-            "UserConnection.SessionCache[\"Key\"] = \"Data\"",,
+            "UserConnection.SessionCache[\"Key\"] = \"Data\"",
             "Store.Cache[CacheLevel.Session][\"Key\"] = \"Data\"",
         ]
     },
@@ -1116,12 +1121,13 @@ var question = [
         name: "How to create a configuration web-service?",
         type: "radio",
         choice: [
+            // false
             "In the \"Source code\" schema, define a class that inherits the Terrasoft.Configuration.Service class. Mark it with the [ServiceContract] attribute. In this class, implement service methods and data types. Mark methods with [OperationContract] attributes, and data types - with the [DataContract] attributes",
             // false
             "In the \"Source code\" schema, add an instance class Terrasoft.Configuration.Service. To add a method to a service, call the AddServiceMethod() function on an instance and pass string with the service method implementation program code as a parameter to that function",
             "In the \"Source code\" schema, define a class and mark it with the [ServiceContract] attribute. In this class, implement service methods and data types. Mark methods with the [OperationContract] attribute, and data types with the [DataContract] attribute"
         ],
-        answer: "",
+        answer: "In the \"Source code\" schema, define a class and mark it with the [ServiceContract] attribute. In this class, implement service methods and data types. Mark methods with the [OperationContract] attribute, and data types with the [DataContract] attribute",
     },
     {
         no: 88,
@@ -1187,18 +1193,18 @@ var question = [
         ],
         answer: "Create a package and set a dependency on the package containing the object. Create a replacement object and set the required base object as the parent one. Add the column"
     },
-    {
-        no: 93,
-        name: "What data will be placed in which repository if the following code is executed: Dictionary dic = (Dictionary)Store.Data[DataLevel.Session][\"SomeDictionary\"]; dic[\"Key\"] = \"ChangedValue\"; dic.Add(\"NewKey\", \"NewValue\");",
-        type: "radio",
-        choice: [
-            "In the data repository of the session level, the \"NewValue\" string will be placed with the \"SomeDictionary\" key",
-            "In the cache repository of the session level, the \"NewValue\" string will be placed with the \"NewKey\" key",
-            "No data will be placed in the session level repository after execution of the code. To add data to the repository, write the \"dic\" dictionary with the \"SomeDictionary\" key to it.",
-            "In the data repository of the session level, the \"NewValue\" string will be placed with the \"NewKey\" key"
-        ],
-        answer: "No data will be placed in the session level repository after execution of the code. To add data to the repository, write the \"dic\" dictionary with the \"SomeDictionary\" key to it.",
-    },
+    // {
+    //     no: 93,
+    //     name: "What data will be placed in which repository if the following code is executed: Dictionary dic = (Dictionary)Store.Data[DataLevel.Session][\"SomeDictionary\"]; dic[\"Key\"] = \"ChangedValue\"; dic.Add(\"NewKey\", \"NewValue\");",
+    //     type: "radio",
+    //     choice: [
+    //         "In the data repository of the session level, the \"NewValue\" string will be placed with the \"SomeDictionary\" key",
+    //         "In the cache repository of the session level, the \"NewValue\" string will be placed with the \"NewKey\" key",
+    //         "No data will be placed in the session level repository after execution of the code. To add data to the repository, write the \"dic\" dictionary with the \"SomeDictionary\" key to it.",
+    //         "In the data repository of the session level, the \"NewValue\" string will be placed with the \"NewKey\" key"
+    //     ],
+    //     answer: "No data will be placed in the session level repository after execution of the code. To add data to the repository, write the \"dic\" dictionary with the \"SomeDictionary\" key to it.",
+    // },
     {
         no: 94,
         name: "How to setup the \"internal\" Web.config file for server side debugging during disabled file system development mode?",
@@ -1667,7 +1673,9 @@ var question = [
         choice: [],
         answer: [
           "product popularity calculation implemented (14)",
-          "result message is shown (5)"
+          "result message is shown (5)",
+          "new action added to the section actions (5)",
+          "multi language message text added (1)"
         ],
     },
     {
@@ -1712,6 +1720,26 @@ var question = [
           "contact rating calculation implemented (14)",
           "column visibility implemented (5)",
           "multi language column captions added (1)"
+        ],
+    },
+    {
+        no: 136,
+        name: "Download package Debug03 using the link. Install package on your development environment. This package contains customization in Accounts section (additional column values calculation programmed). As result when changing Type column value edit page fails and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
+        type: "essay",
+        choice: [],
+          answer: [
+            "Package installed (1)",
+            "Error located (4)"
+        ],
+    },
+    {
+        no: 137,
+        name: "Download package Debug01 using the link. Install package on your development environment. This package contains customization in Documents edit page (additional validation of column values added). As result saving of changes is not performed, and errors appear in browser console window. Your task is to use debugging skills and locate error in the code.",
+        type: "essay",
+        choice: [],
+          answer: [
+            "Package installed (1)",
+            "Error located (4)"
         ],
     },
 ];

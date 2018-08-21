@@ -1154,7 +1154,8 @@ var question = [
             "GetTypedColumnValue()"
         ],
         answer: [
-
+          "GetColumnValue()",
+          "GetTypedColumnValue()"
         ]
     },
     {
@@ -1653,7 +1654,7 @@ var question = [
             "saving of record is forbidden if debt is higher than limit value (5)"
         ],
         answer: [
-          
+
         ],
     },
     {
@@ -1667,7 +1668,7 @@ var question = [
             "current user time zone is taken into consideration (5)"
         ],
         answer: [
-          
+
         ],
     },
     {
@@ -1681,7 +1682,7 @@ var question = [
             "multi language message text added (1)"
         ],
         answer: [
-          
+
         ],
     },
     {
@@ -1690,10 +1691,12 @@ var question = [
         type: "essay",
         choice: [
             "invoices count and total amount calculation implemented (14)",
-            "columns visibility implemented (5)"
+            "columns visibility implemented (5)",
+            "new columns added to the edit page (5)",
+            "multi language column captions added (1)"
         ],
         answer: [
-            
+
         ],
     },
     {
@@ -1705,7 +1708,7 @@ var question = [
             "Error located (4)"
         ],
         answer: [
-          
+
         ],
     },
     {
@@ -1719,7 +1722,7 @@ var question = [
             "multi language caption added (1)"
         ],
         answer: [
-            
+
         ],
     },
     {
@@ -1733,7 +1736,7 @@ var question = [
             "multi language column captions added (1)"
         ],
         answer: [
-          
+
         ],
     },
     {
@@ -1745,7 +1748,7 @@ var question = [
             "Error located (4)"
         ],
         answer: [
-            
+
         ],
     },
     {
@@ -1757,7 +1760,7 @@ var question = [
             "Error located (4)"
         ],
         answer: [
-            
+
         ],
     },
 ];

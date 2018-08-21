@@ -78,7 +78,11 @@ var question = [
             "Specify the column for saving of the calculated value",
             "Configure calculateMethodName property in the field attribute"
         ],
-        answer: "",
+        answer: [
+            "Add the handler method realization to the collection of representation model methods",
+            "In the view model of the page configure the attribute, specify the dependency columns names in its properties, and specify the handler method name",
+            "Specify the column for saving of the calculated value"
+        ],
     },
     {
         no: 7,
@@ -904,7 +908,12 @@ var question = [
             "Register associations between object, detail and detail edit page schemas with SQL queries",
             "Configure detail fields"
         ],
-        answer: "",
+        answer: [
+          "Create detail object schema",
+          "Create and configure detail schema",
+          "Configure detail in replacement client module of section edit page",
+          "Configure detail fields"
+        ],
     },
     {
         no: 70,

@@ -87,7 +87,7 @@
                         // choice
                         // '<td>'+getChoice(item.choice)+'</td>'+
                         // answer
-                        '<td>'+getAnswer(item.type, item.answer)+'</td>'+
+                        '<td>'+getAnswer(item.type, item.answer, item.choice)+'</td>'+
                     '</tr>';
                     $('#tableListQuestion > tbody:last-child').append(list);
                 });                 
@@ -111,7 +111,7 @@
             /**
              * 
              */
-            function getAnswer(type, answer){
+            function getAnswer(type, answer, choice = false){
                 if(type == 'checkbox'){
                     var listAnswer = '<ul>';
                     if(answer.length < 1){
@@ -126,7 +126,20 @@
                     return listAnswer;
                 }
                 else if(type == 'radio') return (answer != "") ? answer : "-";
-                else return (answer != "") ? answer : "-";
+                else if(type == 'essay'){
+                    var listAnswer = '<ul>';
+                    if(answer.length < 1){
+                        return "-";
+                    }
+
+                    $.each(choice, function(index, item){
+                        listAnswer += '<li>'+item+'</li>';
+                    });
+                    listAnswer += '</ul>';
+
+                    return listAnswer;
+                }
+                else return '-';
             }
 
             /**

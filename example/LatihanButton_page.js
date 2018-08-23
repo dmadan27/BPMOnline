@@ -7,7 +7,7 @@ define("UsrExampleBtn1Page", [], function() {
             /**
              * 
              */
-            onClickBtnTest1: function() {
+            onClickTest1: function() {
                 console.log("Clicked Test Button 1");
             },
 
@@ -34,18 +34,18 @@ define("UsrExampleBtn1Page", [], function() {
                 "operation": "insert",
                 "parentName": "LeftContainer",
                 "propertyName": "items",
-                "name": "TestButton1",
+                "name": "Test1Btn",
                 "values": {
                     itemType: Terrasoft.ViewItemType.BUTTON,
                     caption: {
                         bintTo: "Resources.Strings.TestBtn1Caption"
                     },
                     click: {
-                        bindTo: "onClickBtnTest1"
+                        bindTo: "onClickTest1"
                     },
-                    enabled: {
-                        bindTo: ""
-                    },
+                    // enabled: {
+                    //     bindTo: ""
+                    // },
                     "style": Terrasoft.controls.ButtonEnums.style.BLUE
                 }
             },

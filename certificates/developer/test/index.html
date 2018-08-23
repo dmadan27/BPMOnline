@@ -111,7 +111,7 @@
             /**
              * 
              */
-            function getAnswer(type, answer, choice = false){
+            function getAnswer(type, answer, choice){
                 if(type == 'checkbox'){
                     var listAnswer = '<ul>';
                     if(answer.length < 1){
@@ -161,26 +161,6 @@
                 });
             }
             
-            /**
-             * 
-             */
-             function fieldAnswer(questionIndex, choice, type){
-                var multiple = function(){
-                    if(type == "radio") return '';
-                    else if(type == 'checkbox') return 'multiple';
-                    else return ''; 
-                };
-
-                var field = '<select '+multiple()+' onchange="onChange_answer('+questionIndex+', this)" class="form-control input-sm">';     
-                $.each(choice, function(index, item){
-                    field += '<option value="'+index+'">'+item+'</option>';
-                });
-                
-                field += '</select>';
-
-                return field;
-            }
-
         </script>
     </body>
 </html>
